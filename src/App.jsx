@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 function getPageFromPath(pathname) {
   const p = pathname.toLowerCase();
   if (p.startsWith('/groundnut')) return 'groundnut';
+  if (p.startsWith('/cucumber')) return 'cucumber';
+  if (p.startsWith('/gg')) return 'gg';
   return 'paddy';
 }
 
@@ -31,8 +33,22 @@ export default function App() {
 
   // Sync document title and URL with current page
   useEffect(() => {
-    document.title = page === 'paddy' ? 'Paddy' : 'Groundnut';
-    const desired = page === 'paddy' ? '/paddy' : '/groundnut';
+    document.title =
+      page === 'paddy'
+        ? 'Paddy'
+        : page === 'groundnut'
+        ? 'Groundnut'
+        : page === 'cucumber'
+        ? 'Cucumber'
+        : 'Green Gram';
+    const desired =
+      page === 'paddy'
+        ? '/paddy'
+        : page === 'groundnut'
+        ? '/groundnut'
+        : page === 'cucumber'
+        ? '/cucumber'
+        : '/gg';
     if (window.location.pathname !== desired) {
       window.history.replaceState({}, '', desired);
     }
@@ -45,13 +61,6 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
-  const goToGroundnut = () => {
-    if (page !== 'groundnut') {
-      window.history.pushState({}, '', '/groundnut');
-      setPage('groundnut');
-    }
-  };
-
   return (
     <div className="relative flex items-center justify-center min-h-screen px-3 sm:px-4 pt-16 sm:pt-20 pb-8 sm:pb-10">
       {/* Video background */}
@@ -60,7 +69,6 @@ export default function App() {
       </video>
       {/* Gradient backdrop above video for subtle tint */}
       <div className="animated-gradient-overlay fixed inset-0 -z-30 opacity-20 pointer-events-none"></div>
-
 
       {/* Glassmorphism main panel */}
       <div className="relative z-10 w-full max-w-2xl rounded-3xl bg-white/25 border border-white/40 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.12)] p-5 sm:p-6">
@@ -103,7 +111,7 @@ export default function App() {
               </div>
             </div>
           </motion.div>
-        ) : (
+        ) : page === 'groundnut' ? (
           <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mt-6 grid grid-cols-1 gap-4">
               <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
@@ -129,6 +137,68 @@ export default function App() {
               <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
                 <div className="text-gray-700 text-xs">5. Dosage</div>
                 <div className="text-lg">Two soil applications at 1.25L/ha</div>
+              </div>
+            </div>
+          </motion.div>
+        ) : page === 'gg' ? (
+          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">1. Gazette Notification</div>
+                <div className="text-lg">S.O.3922(E), Dated 12-9-2024</div>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">2. Title of Bio Stimulant</div>
+                <div className="text-lg">Sea Weed Extract — Ascophyllum nodosum 15% (Liquid)</div>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">3. Composition</div>
+                <ul className="text-sm mt-1 space-y-1 list-disc pl-5">
+                  <li>Sea Weed Extract</li>
+                  <li>(1) Ascophyllum nodosum 15% (Liquid)</li>
+                  <li>(i) Alginic Acid per cent by weight, minimum: 1.5</li>
+                  <li>(ii) Mannitol per cent by weight, minimum: 1.0</li>
+                  <li>(iii) pH (10% aqueous solution): 4.7 + 1.0</li>
+                  <li>(iv) Specific gravity: 1.0 – 1.1</li>
+                  <li>(v) Total organic carbon per cent by weight, minimum: 5</li>
+                </ul>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">4. Crops</div>
+                <div className="text-lg">Green gram</div>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">5. Dosage</div>
+                <div className="text-lg">Two foliar applications at 1.5 l/ha</div>
+              </div>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">1. Gazette Notification</div>
+                <div className="text-lg">S.O.3922(E), Dated 12-9-2024</div>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">2. Title of Bio Stimulant</div>
+                <div className="text-lg">Kappaphycus alvarezii 24% (Liquid)</div>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">3. Composition</div>
+                <ul className="text-sm mt-1 space-y-1 list-disc pl-5">
+                  <li>(i) Total carbohydrate per cent by weight, minimum: 7.5</li>
+                  <li>(ii) D-Galactose – 4-O- Sulphate per cent by weight, minimum: 6.0</li>
+                  <li>(iii) pH (minimum) (1:2 aqueous solution): 3.0 – 5.0</li>
+                </ul>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">4. Crops</div>
+                <div className="text-lg">Cucumber</div>
+              </div>
+              <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">5. Dosage</div>
+                <div className="text-lg">One foliar application at 2 ml/l</div>
               </div>
             </div>
           </motion.div>
