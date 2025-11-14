@@ -118,7 +118,7 @@ export default function App() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none">
             <ShinyText text="Nutreefy" speed={3} className="text-3xl sm:text-4xl font-extrabold tracking-wide" />
           </div>
-          <div className="flex items-center justify-center pt-14 sm:pt-16">
+          <div className="flex items-center justify-center pt-6 sm:pt-8">
             <video src="/logo.mp4" className="w-64 sm:w-80 h-auto object-contain rounded-md" autoPlay loop muted playsInline />
           </div>
         </div>
