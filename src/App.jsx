@@ -69,7 +69,16 @@ export default function App() {
   return (
     <div className="relative flex items-center justify-center min-h-screen px-3 sm:px-4 pt-16 sm:pt-20 pb-8 sm:pb-10">
       {/* Video background */}
-      <video ref={videoRef} className="fixed inset-0 -z-40 w-full h-full object-cover pointer-events-none" autoPlay loop muted playsInline preload="auto" poster="/bg.png">
+      <video
+        ref={videoRef}
+        className="fixed inset-0 -z-40 w-full h-full object-cover pointer-events-none"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        onError={() => console.warn('Background video failed to load or play')}
+      >
         <source src="/bg.mp4" type="video/mp4" />
       </video>
       {/* Gradient backdrop above video for subtle tint */}
@@ -94,19 +103,22 @@ export default function App() {
         />
       </motion.div>
 
+      {/* Watermark */}
+      <div className="fixed bottom-3 right-3 z-40 select-none pointer-events-none">
+        <div className="text-[11px] sm:text-xs text-gray-800/70 bg-white/70 rounded-full px-3 py-1 border border-white/80 shadow-sm">
+          made by Jasnav It Solutions
+        </div>
+      </div>
+
       {/* Glassmorphism main panel */}
       <div className="relative z-10 w-full max-w-2xl rounded-3xl bg-white/25 border border-white/40 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.12)] p-5 sm:p-6">
-        <div className="text-center mb-4">
-          {/* Company name with shiny text effect */}
-          {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-          <div className="text-2xl sm:text-3xl font-extrabold tracking-wide">
-            <ShinyText text="Nutreefy" speed={3} />
-          </div>
-        </div>
 
-        {/* Logo video header */}
-        <div className="rounded-2xl bg-white border border-white/60 px-4 py-6 sm:px-6 sm:py-8 text-gray-900">
-          <div className="flex items-center justify-center">
+        {/* Logo video header with overlayed Nutreefy text */}
+        <div className="relative rounded-2xl bg-white border border-white/60 px-4 py-6 sm:px-6 sm:py-8 text-gray-900">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none">
+            <ShinyText text="Nutreefy" speed={3} className="text-3xl sm:text-4xl font-extrabold tracking-wide" />
+          </div>
+          <div className="flex items-center justify-center pt-14 sm:pt-16">
             <video src="/logo.mp4" className="w-64 sm:w-80 h-auto object-contain rounded-md" autoPlay loop muted playsInline />
           </div>
         </div>
