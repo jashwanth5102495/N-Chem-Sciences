@@ -113,12 +113,14 @@ export default function App() {
       {/* Glassmorphism main panel */}
       <div className="relative z-10 w-full max-w-2xl rounded-3xl bg-white/25 border border-white/40 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.12)] p-5 sm:p-6">
 
-        {/* Logo video header with overlayed Nutreefy text */}
-        <div className="relative rounded-2xl bg-white border border-white/60 px-4 py-6 sm:px-6 sm:py-8 text-gray-900">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none">
-            <ShinyText text="Nutreefy" speed={3} className="text-3xl sm:text-4xl font-extrabold tracking-wide" />
-          </div>
-          <div className="flex items-center justify-center pt-6 sm:pt-8">
+        {/* Page title (outside the white box) */}
+        <div className="text-center mb-2">
+          <ShinyText text="Nutreefy" speed={3} className="text-3xl sm:text-4xl font-extrabold tracking-wide" />
+        </div>
+
+        {/* Logo video header */}
+        <div className="rounded-2xl bg-white border border-white/60 px-4 py-6 sm:px-6 sm:py-8 text-gray-900">
+          <div className="flex items-center justify-center">
             <video src="/logo.mp4" className="w-64 sm:w-80 h-auto object-contain rounded-md" autoPlay loop muted playsInline />
           </div>
         </div>
@@ -126,6 +128,11 @@ export default function App() {
         {page === 'paddy' ? (
           <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mt-6 grid grid-cols-1 gap-4">
+              {/* Made by badge card */}
+              <div className="rounded-xl bg-white/25 border border-white/50 px-4 py-3 text-gray-900">
+                <div className="text-gray-700 text-xs">Made by</div>
+                <div className="text-lg">Jasnav It Solutions</div>
+              </div>
               <div className="rounded-xl bg-white/20 border border-white/40 px-4 py-3 text-gray-900">
                 <div className="text-gray-700 text-xs">1. Gazette Notification</div>
                 <div className="text-lg">S.O.3922(E), Dated 12-9-2024</div>
