@@ -80,8 +80,10 @@ export const SLUG_TO_BRAND = {
   'HUMICID': 'HUMICID',
   'HUMICID+': 'HUMICID +',
   'HUMICID%2B': 'HUMICID +',
+  'HUMICID ': 'HUMICID +',
   'HUMICID++': 'HUMICID ++',
   'HUMICID%2B%2B': 'HUMICID ++',
+  'HUMICID  ': 'HUMICID ++',
   'SEA EXTRACT': 'SEA EXTRACT',
   'BOT EXTRACT': 'BOT EXTRACT',
   'OR MIX (NUTRIENT MOBILIZER)': 'OR MIX (NUTRIENT MOBILIZER)',
@@ -92,8 +94,9 @@ export const SLUG_TO_BRAND = {
 
 export function findProductBySlug(slug) {
   const decoded = decodeURIComponent(slug);
-  const brand = SLUG_TO_BRAND[decoded] || SLUG_TO_BRAND[slug] || decoded;
-  // case-insensitive match for robustness
+  // Normalize: some hosts may translate '+' to space in path
+  const normalized = decoded.replace(/\+/g, ' ');
+  const brand = SLUG_TO_BRAND[normalized] || SLUG_TO_BRAND[slug] || normalized;
   const found = PRODUCTS.find(p => p.brand.toUpperCase() === brand.toUpperCase());
   return found || PRODUCTS.find(p => p.brand === 'HUMICID');
 }

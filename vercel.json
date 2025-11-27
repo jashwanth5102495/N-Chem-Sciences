@@ -5,6 +5,8 @@
     { "src": "/(.*)", "dest": "/index.html" }
   ],
   "redirects": [
-    { "source": "/Humus%20Carbon%20%2B%2B", "destination": "/HUMICID", "statusCode": 308 }
+    { "source": "/Humus%20Carbon%20%2B%2B", "destination": "/HUMICID", "statusCode": 308 },
+    { "source": "/HUMICID\\+", "destination": "/HUMICID%2B", "statusCode": 308 },
+    { "source": "/HUMICID\\+\\+", "destination": "/HUMICID%2B%2B", "statusCode": 308 }
   ]
 }
